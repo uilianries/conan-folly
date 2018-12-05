@@ -77,13 +77,15 @@ class FollyConan(ConanFile):
     def _configure_cmake(self):
         cmake = CMake(self)
         cmake.verbose = True
+        if self.settings.os == "Macos" and \
+           self.settings.compiler == "apple-clang" and \
+           self.settings.compiler.version == "9.0":
+            cmake.definitions["COMPILER_HAS_F_ALIGNED_NEW"] = "OFF"
         cmake.configure()
         return cmake
 
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
-        tools.replace_in_file(os.path.join(self._source_subfolder, "CMake", "FollyCompilerUnix.cmake"), "-std=${CXX_STD}", "-std=c++1z")
-        tools.replace_in_file(os.path.join(self._source_subfolder, "CMake", "folly-deps.cmake"), "if(NOT FOLLY_CPP_ATOMIC_BUILTIN)", "if(TRUE)")
         cmake = self._configure_cmake()
         cmake.build()
 
