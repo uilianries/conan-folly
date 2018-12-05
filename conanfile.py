@@ -81,7 +81,6 @@ class FollyConan(ConanFile):
 
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
-        tools.replace_in_file(os.path.join(self._source_subfolder, "CMake", "FollyCompilerUnix.cmake"), "-Wall", "-fsized-deallocation")
         cmake = self._configure_cmake()
         cmake.build()
 
@@ -99,3 +98,6 @@ class FollyConan(ConanFile):
         if self.settings.os == "Linux" and self.settings.compiler == "clang" and \
            Version(self.settings.compiler.version.value) == "6" and self.settings.compiler.libcxx == "libstdc++":
             self.cpp_info.libs.append("atomic")
+        elif self.settings.os == "Macos" and self.settings.compiler == "apple-clang" and \
+             Version(self.settings.compiler.version.value) == "9":
+            self.cpp_info.libs.append("c++")
