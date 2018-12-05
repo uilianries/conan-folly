@@ -68,11 +68,6 @@ class FollyConan(ConanFile):
              self.settings.compiler == "apple-clang" and \
              compiler_version < "8.0":
             raise ConanInvalidConfiguration("Folly could not be built by apple-clang < 8.0")
-        elif self.settings.os == "Macos" and \
-             self.settings.compiler == "apple-clang" and \
-             compiler_version == "9.0" and \
-             self.settings.compiler.libcxx == "libc++":
-            raise ConanInvalidConfiguration("Folly could not be built by apple-clang 9.0 and libc++")
 
     def source(self):
         tools.get("{0}/archive/v{1}.tar.gz".format(self.homepage, self.version))
@@ -81,11 +76,14 @@ class FollyConan(ConanFile):
 
     def _configure_cmake(self):
         cmake = CMake(self)
+        cmake.verbose = True
+        cmake.definitions["CXX_STD"] = "c++14"
         cmake.configure()
         return cmake
 
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
+        tools.replace_in_file()
         cmake = self._configure_cmake()
         cmake.build()
 
