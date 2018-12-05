@@ -81,8 +81,7 @@ class FollyConan(ConanFile):
 
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
-        if self.settings.os == "Macos":
-            cmake.definitions["CXX_STD"] = "c++14"
+        tools.replace_in_file(os.path.join(self._source_subfolder, "CMake", "FollyCompilerUnix.cmake"), "-Wall", "-fsized-deallocation")
         cmake = self._configure_cmake()
         cmake.build()
 
