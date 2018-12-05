@@ -13,6 +13,9 @@ linux: &linux
 osx: &osx
    os: osx
    language: generic
+   cache:
+      directories:
+        - $HOME/Library/Caches/Homebrew
 matrix:
    include:
       - <<: *osx
