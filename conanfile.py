@@ -77,10 +77,6 @@ class FollyConan(ConanFile):
     def _configure_cmake(self):
         cmake = CMake(self)
         cmake.verbose = True
-        if self.settings.os == "Macos" and \
-           self.settings.compiler == "apple-clang" and \
-           self.settings.compiler.version == "9.0":
-            cmake.definitions["COMPILER_HAS_F_ALIGNED_NEW"] = "OFF"
         cmake.configure()
         return cmake
 
