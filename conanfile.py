@@ -83,6 +83,7 @@ class FollyConan(ConanFile):
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
         tools.replace_in_file(os.path.join(self._source_subfolder, "CMake", "FollyCompilerUnix.cmake"), "-std=${CXX_STD}", "-std=c++1z")
+        tools.replace_in_file(os.path.join(self._source_subfolder, "CMakeLists.txt"), "target_link_libraries(folly PUBLIC folly_deps)", "target_link_libraries(folly PUBLIC folly_deps atomic)")
         cmake = self._configure_cmake()
         cmake.build()
 
