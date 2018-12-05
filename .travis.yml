@@ -15,7 +15,15 @@ osx: &osx
    language: generic
    cache:
       directories:
-        - $HOME/Library/Caches/Homebrew
+        - /usr/local/Cellar/openssl
+        - /usr/local/opt/openssl
+        - /usr/local/Cellar/libevent
+        - /usr/local/opt/libevent
+        - /usr/local/Cellar/check
+        - /usr/local/opt/check
+        - /usr/local/Cellar/pyenv-virtualenv
+        - /usr/local/Cellar/pyenv/
+        - /Users/travis/.pyenv
 matrix:
    include:
       - <<: *osx
