@@ -83,7 +83,6 @@ class FollyConan(ConanFile):
 
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
-        tools.replace_in_file()
         cmake = self._configure_cmake()
         cmake.build()
 
