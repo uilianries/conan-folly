@@ -77,12 +77,12 @@ class FollyConan(ConanFile):
     def _configure_cmake(self):
         cmake = CMake(self)
         cmake.verbose = True
-        cmake.definitions["CXX_STD"] = "c++14"
         cmake.configure()
         return cmake
 
     def build(self):
         tools.patch(base_path=self._source_subfolder, patch_file='folly.patch')
+        tools.replace_in_file(os.path.join(self._source_subfolder, "CMake", "FollyCompilerUnix.cmake"), "-std=${CXX_STD}", "-std=c++1z")
         cmake = self._configure_cmake()
         cmake.build()
 
