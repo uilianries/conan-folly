@@ -12,7 +12,7 @@ env:
 
 build:
   pre_ci_boot:
-    image_name: "${DOCKER_IMAGE}"
+    image_name: ${DOCKER_IMAGE}
     image_tag: latest
     pull: true
   ci:
