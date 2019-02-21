@@ -24,6 +24,7 @@ env:
 build:
   pre_ci_boot:
     image_name: conanio/gcc5
+    pull: true
   ci:
     - .ci/install.sh
     - .ci/run.sh
