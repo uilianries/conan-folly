@@ -1,0 +1,29 @@
+language: python
+python:
+  - 3.7
+
+matrix:
+  include:
+    - CONAN_GCC_VERSIONS: "5"
+      CONAN_DOCKER_IMAGE: "conanio/gcc5"
+      CONAN_CURRENT_PAGE: "1"
+      CONAN_ARCHS: "x86"
+    - CONAN_GCC_VERSIONS: "5"
+      CONAN_DOCKER_IMAGE: "conanio/gcc5"
+      CONAN_CURRENT_PAGE: "2"
+      CONAN_ARCHS: "x86"
+    - CONAN_GCC_VERSIONS: "5"
+      CONAN_DOCKER_IMAGE: "conanio/gcc5"
+      CONAN_CURRENT_PAGE: "1"
+      CONAN_ARCHS: "x86_64"
+    - CONAN_GCC_VERSIONS: "5"
+      CONAN_DOCKER_IMAGE: "conanio/gcc5"
+      CONAN_CURRENT_PAGE: "2"
+      CONAN_ARCHS: "x86_64"
+
+build:
+  pre_ci_boot:
+    image_name: ${CONAN_DOCKER_IMAGE}
+  ci:
+    - .ci/install.sh
+    - .ci/run.sh
