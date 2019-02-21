@@ -23,7 +23,7 @@ env:
 
 build:
   pre_ci_boot:
-    image_name: ${CONAN_DOCKER_IMAGE}
+    image_name: conanio/gcc5
   ci:
     - .ci/install.sh
     - .ci/run.sh
