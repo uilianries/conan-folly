@@ -22,6 +22,6 @@ build:
     image_name: conanio/gcc5
     image_tag: latest
     pull: true
-    options: docker run -d
+    options: "docker run -d conanio/gcc5"
   ci:
     - .ci/run.sh
