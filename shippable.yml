@@ -5,25 +5,22 @@ python:
 env:
   matrix:
     - CONAN_GCC_VERSIONS: "5"
-      CONAN_DOCKER_IMAGE: "conanio/gcc5"
       CONAN_CURRENT_PAGE: "1"
       CONAN_ARCHS: "x86"
     - CONAN_GCC_VERSIONS: "5"
-      CONAN_DOCKER_IMAGE: "conanio/gcc5"
       CONAN_CURRENT_PAGE: "2"
       CONAN_ARCHS: "x86"
     - CONAN_GCC_VERSIONS: "5"
-      CONAN_DOCKER_IMAGE: "conanio/gcc5"
       CONAN_CURRENT_PAGE: "1"
       CONAN_ARCHS: "x86_64"
     - CONAN_GCC_VERSIONS: "5"
-      CONAN_DOCKER_IMAGE: "conanio/gcc5"
       CONAN_CURRENT_PAGE: "2"
       CONAN_ARCHS: "x86_64"
 
 build:
   pre_ci_boot:
     image_name: conanio/gcc5
+    image_tag: latest
     pull: true
   ci:
     - .ci/install.sh
