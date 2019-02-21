@@ -22,7 +22,7 @@ build:
     image_name: conanio/gcc5
     image_tag: latest
     pull: true
-    options: "-e CONAN_GCC_VERSIONS=${CONAN_GCC_VERSIONS} -e CONAN_CURRENT_PAGE=${CONAN_CURRENT_PAGE} -e CONAN_ARCHS=${CONAN_ARCHS}"
+    entryPoint:
+      - .ci/install.sh
   ci:
-    - .ci/install.sh
     - .ci/run.sh
