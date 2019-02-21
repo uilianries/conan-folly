@@ -1,23 +1,20 @@
 env:
   matrix:
-    - CONAN_GCC_VERSIONS: "5"
-      CONAN_CURRENT_PAGE: "1"
-      CONAN_ARCHS: "x86"
-    - CONAN_GCC_VERSIONS: "5"
-      CONAN_CURRENT_PAGE: "2"
-      CONAN_ARCHS: "x86"
-    - CONAN_GCC_VERSIONS: "5"
-      CONAN_CURRENT_PAGE: "1"
+    - DOCKER_IMAGE: "conanio/gcc5"
+      CONAN_GCC_VERSIONS: "5"
       CONAN_ARCHS: "x86_64"
-    - CONAN_GCC_VERSIONS: "5"
-      CONAN_CURRENT_PAGE: "2"
+    - DOCKER_IMAGE: "conanio/gcc6"
+      CONAN_GCC_VERSIONS: "6"
+      CONAN_ARCHS: "x86_64"
+    - DOCKER_IMAGE: "conanio/gcc7"
+      CONAN_GCC_VERSIONS: "7"
       CONAN_ARCHS: "x86_64"
 
 build:
   pre_ci_boot:
-    image_name: conanio/gcc5
+    image_name: "${DOCKER_IMAGE}"
     image_tag: latest
     pull: true
-    options: "-e HOME=/home/conan"
   ci:
+    - .ci/install.sh
     - .ci/run.sh
