@@ -22,7 +22,6 @@ build:
     image_name: conanio/gcc5
     image_tag: latest
     pull: true
-    entryPoint:
-      - .ci/install.sh
+    options: docker run -d
   ci:
     - .ci/run.sh
