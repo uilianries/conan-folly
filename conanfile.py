@@ -24,7 +24,7 @@ class FollyConan(ConanFile):
     generators = "cmake"
     requires = (
         "boost/1.71.0@conan/stable",
-        "double-conversion/3.1.1@bincrafters/stable",
+        "double-conversion/3.1.4@bincrafters/stable",
         "gflags/2.2.1@bincrafters/stable",
         "glog/20181109@bincrafters/stable",
         "libevent/2.1.8@bincrafters/stable",
